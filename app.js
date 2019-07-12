@@ -36,7 +36,7 @@ $('form.password-generator').on('submit', (e) => {
                     }).append(
                         $('<button>', {
                             'data-clipboard-target': '#password-' + password,
-                            html: 'copiar',
+                            html: 'copy',
                         })
                     )
                 )
