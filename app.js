@@ -1,4 +1,3 @@
-console.log('app loaded');
 $('form.password-generator').on('submit', (e) => {
     e.preventDefault();
 
@@ -18,27 +17,30 @@ $('form.password-generator').on('submit', (e) => {
     .then((data) => data
         .trim()
         .split("\n")
-        .forEach((password, index) => {
+        .forEach((password) => {
             passwordList.append(
                 $('<li>', {
                     class: 'row',
                 }).append(
-                    $('<code>', {
-                        class: 'col',
-                        id   : 'password-' + index,
-                        html : password,
-                    }),
                     $('<div>', {
                         class: 'col',
                     }).append(
+                        $('<code>', {
+                            class: 'text-truncate',
+                            id   : 'password-' + password,
+                            html : password,
+                        }),
+                    ),
+                    $('<div>', {
+                        class: 'col text-right',
+                    }).append(
                         $('<button>', {
-                            'data-clipboard-target': '#password-' + index,
+                            'data-clipboard-target': '#password-' + password,
                             html: 'copiar',
                         })
                     )
                 )
             );
-            console.log(password);
         })
     ).then(() => {
         var clipboard = new ClipboardJS('button[data-clipboard-target]');
